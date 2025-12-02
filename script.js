@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resumeData = {
         personalInfo: {
             name: "Aditya Kumar Singh",
-            titles: ["Audio ML Engineer...", "Researcher...", "C++ Developer..."],
+            titles: ["Machine Learning Engineer...","Deep Learning...", "Researcher...", "C++ Developer..."],
             socials: [
                 { name: "LinkedIn", url: "https://linkedin.com/in/adi1220", icon: "fab fa-linkedin" },
                 { name: "GitHub", url: "https://github.com/adi1220", icon: "fab fa-github" },
@@ -18,7 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 role: "Software Engineer (Machine Learning)",
                 company: "Samsung Research Institute Delhi",
                 duration: "Jul 2022 – Present",
-                description: "Led end-to-end development of on-device Sound Event Detection, achieving a 94.8% F1-score. Developed high-performance C++ inference pipelines for real-time audio processing and reduced model size by 75%."
+                description: "Delivered production-grade ML/DL solutions spanning Computer Vision, Audio AI, and Agentic AI—from research and prototyping to deployment and commercialization.
+",
+                details: [
+        "Developed C++ inference pipelines using singleton/factory patterns, circular buffers, and multithreading for low-latency, memory-safe operation across 3 product lines.",
+        "Reduced inference latency to < 100 ms through advanced pruning, quantization, and architectural optimization.",
+        "Built a few-shot learning framework for rapid model customization, accelerating feature prototyping.",
+        "Enhanced model performance using Siamese networks and knowledge distillation, shrinking models by 50% while increasing the F1-score by 4%.",
+        "Designed an automation framework with Neo4j and MongoDB, reducing manual testing efforts by 50%.",
+        "Fine-tuned YOLOv8/YOLOX models for real-time detection with over 89% accuracy.",
+        "Enhanced Samsung OCR pipelines, increasing recognition accuracy to 95.2%."
+    ]
             },
             {
                 role: "Software Engineer Intern",
@@ -36,33 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
         projects: [
             {
                 name: "On-Device Sound Event Detection",
-                category: "Engineering Project",
+                category: "Samsung R&D Project",
                 description: "A 500KB model with a 94.8% F1-score for real-time on-device sound detection.",
-                links: { "Code": "https://github.com/adi1220" /* Update with specific link */, "Paper": "#" /* Add link */ }
+                // links: { "Code": "https://github.com/adi1220" /* Update with specific link */, "Paper": "#" /* Add link */ }
             },
             {
                 name: "Facial Keypoint Detection",
-                category: "Engineering Project",
+                category: "Computer Vision Nanodegree Project",
                 description: "A CNN model to detect facial keypoints, supplemented with a one-shot SVM+HOG detector.",
-                links: { "Code": "https://github.com/adi1220" /* Update with specific link */ }
+                links: { "Code": "https://github.com/adi1220/Facial-Keypoint-Detection-Project" /* Update with specific link */ }
             },
             {
                 name: "Automatic Image Captioning",
-                category: "Engineering Project",
+                category: "Computer Vision Nanodegree Project",
                 description: "An image captioning model using a CNN encoder (LeNet) and an LSTM decoder.",
-                links: { "Code": "https://github.com/adi1220" /* Update with specific link */ }
+                links: { "Code": "https://github.com/adi1220/Image-Captioning-" /* Update with specific link */ }
             },
              {
                 name: "Hate Speech Detection",
                 category: "Research",
-                description: "Multimodal models combining VGG16 and Bi-LSTM to improve hate speech detection.",
-                links: { "Paper": "#" /* Add link to paper */ }
+                description: "Multimodal models analysis combining VGG16,Resnet-50 and Bi-LSTM,Stacked-LSTM to improve hate speech detection.",
+                // links: { "Code": "#" /* Add link to paper */ }
             },
             {
                 name: "Patent: Spatio-Temporal Visual Cue",
                 category: "Research",
                 description: "Published patent for a system and method for generating aligned multi-event visual cues. (ID: WI-202406-32-1-IN0)",
-                links: { "View": "#" /* Add link to patent */ }
+                // links: { "View": "#" /* Add link to patent */ }
             }
         ],
         skills: [
@@ -71,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: "PyTorch", description: "Deep Learning Framework" },
             { name: "TensorFlow", description: "TFLite, ONNX" },
             { name: "Model Optimization", description: "Quantization, Pruning, Distillation" },
-            { name: "Computer Vision", description: "YOLO, OCR, CNNs" },
+            { name: "Computer Vision & NLP", description: "YOLO, OCR, CNNs, Transformers, LSTMs, Librosa" },
             { name: "Real-time Inference", description: "Low-latency pipelines" },
             { name: "Databases", description: "MongoDB, Neo4j" },
         ]
