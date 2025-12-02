@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resumeData = {
         personalInfo: {
             name: "Aditya Kumar Singh",
-            titles: ["ML Engineer...","Deep Learning...", "Researcher..."],
+            titles: ["Machine Learning Engineer...","Deep Learning...", "Researcher...", "C++ Developer..."],
             socials: [
                 { name: "LinkedIn", url: "https://linkedin.com/in/adi1220", icon: "fab fa-linkedin" },
                 { name: "GitHub", url: "https://github.com/adi1220", icon: "fab fa-github" },
@@ -14,12 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         experience: [
-            {
-                role: "Software Engineer (Machine Learning)",
-                company: "Samsung Research Institute Delhi",
-                duration: "Jul 2022 – Present",
-                description: "Delivered production-grade ML/DL solutions spanning Computer Vision, Audio AI, and Agentic AI—from research and prototyping to deployment and commercialization."
-            },
+                {
+                  role: "Software Engineer (Machine Learning)",
+                  company: "Samsung Research Institute Delhi",
+                  duration: "Jul 2022 – Present",
+                  description:
+                    "Delivered production-grade ML/DL solutions spanning Computer Vision, Audio AI, and Agentic AI—from research and prototyping to deployment and commercialization.",
+                  details: [
+                    "Developed C++ inference pipelines using singleton/factory patterns, circular buffers, and multithreading for low-latency, memory-safe operation across 3 product lines.",
+                    "Reduced inference latency to < 100 ms through advanced pruning, quantization, and architectural optimization.",
+                    "Built a few-shot learning framework for rapid model customization, accelerating feature prototyping.",
+                    "Enhanced model performance using Siamese networks and knowledge distillation, shrinking models by 50% while increasing the F1-score by 4%.",
+                    "Designed an automation framework with Neo4j and MongoDB, reducing manual testing efforts by 50%.",
+                    "Fine-tuned YOLOv8/YOLOX models for real-time detection with over 89% accuracy.",
+                    "Enhanced Samsung OCR pipelines, increasing recognition accuracy to 95.2%."
+                  ]
+                },
             {
                 role: "Software Engineer Intern",
                 company: "Samsung Research Institute Delhi",
@@ -38,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: "On-Device Sound Event Detection",
                 category: "Samsung R&D Project",
                 description: "A 500KB model with a 94.8% F1-score for real-time on-device sound detection.",
-                // links: { "Code": "https://github.com/adi1220" /* Update with specific link */, "Paper": "#" /* Add link */ }
+                links: { "Code": "https://github.com/adi1220/" /* Update with specific link */, "Paper": "#" /* Add link */ }
             },
             {
                 name: "Facial Keypoint Detection",
@@ -56,13 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: "Hate Speech Detection",
                 category: "Research",
                 description: "Multimodal models analysis combining VGG16,Resnet-50 and Bi-LSTM,Stacked-LSTM to improve hate speech detection.",
-                // links: { "Code": "#" /* Add link to paper */ }
+                links: { "Code": "https://github.com/adi1220/" /* Add link to paper */ }
             },
             {
                 name: "Patent: Spatio-Temporal Visual Cue",
                 category: "Research",
                 description: "Published patent for a system and method for generating aligned multi-event visual cues. (ID: WI-202406-32-1-IN0)",
-                // links: { "View": "#" /* Add link to patent */ }
+                links: { "Code": "https://github.com/adi1220/" /* Add link to patent */ }
             }
         ],
         skills: [
@@ -80,23 +90,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. DYNAMIC RENDERING ---
 
     // Social Links
-    const socialLinksContainer = document.getElementById('social-links');
-    const footerSocials = document.getElementById('footer-social-links');
-    resumeData.personalInfo.socials.forEach(social => {
-        const link = `<a href="${social.url}" target="_blank" rel="noopener noreferrer" aria-label="${social.name}"><i class="${social.icon}"></i></a>`;
-        socialLinksContainer.innerHTML += link;
-        footerSocials.innerHTML += link;
-    });
+    const socialLinksContainer = document.getElementById("social-links");
+    const footerSocials = document.getElementById("footer-social-links");
 
+    if (socialLinksContainer && footerSocials) {
+    const socialsHTML = resumeData.personalInfo.socials
+        .map(
+        (social) =>
+            `<a href="${social.url}" target="_blank" rel="noopener noreferrer" aria-label="${social.name}"><i class="${social.icon}"></i></a>`
+        )
+        .join("");
+
+    socialLinksContainer.innerHTML = socialsHTML;
+    footerSocials.innerHTML = socialsHTML;
+    }
+
+    // Experience Timeline
     // Experience Timeline
     const timelineContainer = document.getElementById('experience-timeline');
     resumeData.experience.forEach(item => {
+        const detailsHTML =
+            item.details && item.details.length
+                ? `
+                    <details class="timeline-details">
+                        <summary>Highlights</summary>
+                        <ul>
+                            ${item.details.map((d) => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </details>
+                `
+                : '';
+
         const timelineItem = `
             <div class="timeline-item">
                 <div class="timeline-content">
                     <h3>${item.role}</h3>
                     <p><strong>${item.company}</strong> | ${item.duration}</p>
                     <p>${item.description}</p>
+                    ${detailsHTML}
                 </div>
             </div>
         `;
@@ -104,36 +135,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Projects Grid
-    const projectsGrid = document.getElementById('projects-grid');
-    resumeData.projects.forEach(project => {
-        let linksHTML = '';
-        const links = project.links || {};               // ← guard when links undefined
-        for (const [key, value] of Object.entries(links)) {
-            linksHTML += `<a href="${value}" target="_blank" rel="noopener noreferrer">${key}</a>`;
-        }
-        const projectCard = `
-            <div class="bento-card">
-                <h3>${project.name}</h3>
-                <p><em>${project.category}</em></p>
-                <p>${project.description}</p>
-                <div class="links">${linksHTML}</div>
-            </div>
-        `;
-        projectsGrid.innerHTML += projectCard;
-    });
+    const projectsGrid = document.getElementById("projects-grid");
+    if (projectsGrid) {
+    projectsGrid.innerHTML = resumeData.projects
+        .map((project) => {
+        const links = project.links || {};
+        const linksHTML = Object.entries(links)
+            .map(
+            ([key, value]) =>
+                `<a href="${value}" target="_blank" rel="noopener noreferrer">${key}</a>`
+            )
+            .join("");
 
+        return `
+        <div class="bento-card">
+            <h3>${project.name}</h3>
+            <p><em>${project.category}</em></p>
+            <p>${project.description}</p>
+            <div class="links">${linksHTML}</div>
+        </div>
+        `;
+        })
+        .join("");
+    }
 
     // Skills Grid
-    const skillsGrid = document.getElementById('skills-grid');
-    resumeData.skills.forEach(skill => {
-        const skillCard = `
-            <div class="bento-card">
-                <h3>${skill.name}</h3>
-                <p>${skill.description}</p>
-            </div>
-        `;
-        skillsGrid.innerHTML += skillCard;
-    });
+    const skillsGrid = document.getElementById("skills-grid");
+    if (skillsGrid) {
+    skillsGrid.innerHTML = resumeData.skills
+        .map(
+        (skill) => `
+        <div class="bento-card">
+            <h3>${skill.name}</h3>
+            <p>${skill.description}</p>
+        </div>
+        `
+        )
+        .join("");
+    }
 
 
     // --- 3. INTERSECTION OBSERVER for scroll animations ---
@@ -148,42 +187,58 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => observer.observe(section));
 
     // --- 4. TYPEWRITER EFFECT ---
-    const typewriterEl = document.querySelector('.typewriter');
-    let textArray = [];
+    const typewriterEl = document.querySelector(".typewriter");
+
     if (typewriterEl) {
-        try {
-            textArray = JSON.parse(typewriterEl.getAttribute('data-text') || '[]');
-        } catch (e) {
-            console.error('typewriter data-text JSON parse error:', e);
-            textArray = [];
-        }
-    }
-    
-    if (typewriterEl && textArray.length) {
-        let textIndex = 0;
-        let charIndex = 0;
-        function type() {
-            if (charIndex < textArray[textIndex].length) {
-                typewriterEl.textContent += textArray[textIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, 100);
-            } else {
-                setTimeout(erase, 2000);
-            }
-        }
-        function erase() {
-            if (charIndex > 0) {
-                typewriterEl.textContent = textArray[textIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(erase, 50);
-            } else {
-                textIndex = (textIndex + 1) % textArray.length;
-                setTimeout(type, 500);
-            }
-        }
-        type();
+    const textAttr = typewriterEl.getAttribute("data-text");
+    let textArray = [];
+
+    try {
+        textArray = textAttr ? JSON.parse(textAttr) : [];
+    } catch {
+        textArray = [];
     }
 
+    if (textArray.length > 0) {
+        const reduceMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (reduceMotion) {
+        // Respect users who prefer less motion
+        typewriterEl.textContent = textArray[0];
+        } else {
+        let textIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+            typewriterEl.textContent += textArray[textIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 100);
+            } else {
+            setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+            typewriterEl.textContent = textArray[textIndex].substring(
+                0,
+                charIndex - 1
+            );
+            charIndex--;
+            setTimeout(erase, 50);
+            } else {
+            textIndex = (textIndex + 1) % textArray.length;
+            setTimeout(type, 500);
+            }
+        }
+
+        type();
+        }
+    }
+    }
 
 
     // --- 5. CANVAS API - Particle Network ---
@@ -234,19 +289,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function init() {
         particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 9000;
+      
+        const isMobile = window.innerWidth < 768;
+        const baseCount = (canvas.height * canvas.width) / 9000;
+        const maxParticles = isMobile ? 80 : 150;
+        const numberOfParticles = Math.min(baseCount, maxParticles);
+      
         for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 2) + 1;
-            let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-            let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-            let directionX = (Math.random() * 0.4) - 0.2;
-            let directionY = (Math.random() * 0.4) - 0.2;
-            let color = 'rgba(0, 255, 255, 0.5)';
-            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+          const size = Math.random() * 2 + 1;
+          const x = Math.random() * (innerWidth - size * 4) + size * 2;
+          const y = Math.random() * (innerHeight - size * 4) + size * 2;
+          const directionX = Math.random() * 0.4 - 0.2;
+          const directionY = Math.random() * 0.4 - 0.2;
+          const color = "rgba(0, 255, 255, 0.5)";
+          particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
-    }
-
-    function connect() {
+      }
+      const prefersReducedMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+      function connect() {
         let opacityValue = 1;
         for (let a = 0; a < particlesArray.length; a++) {
             for (let b = a; b < particlesArray.length; b++) {
@@ -264,16 +327,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
     function animate() {
-        requestAnimationFrame(animate);
+      if (prefersReducedMotion) {
+        // Static but still “neural” background
         ctx.clearRect(0, 0, innerWidth, innerHeight);
-
         for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
+          particlesArray[i].draw();
         }
         connect();
+        return;
+      }
+    
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+    
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connect();
     }
+
+    
     
     window.addEventListener('resize', () => {
         canvas.width = innerWidth;
@@ -293,19 +367,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. GITHUB API INTEGRATION (BONUS) ---
     async function fetchGitHubStats(username) {
         try {
-            const response = await fetch(`https://api.github.com/users/${username}`);
-            if (!response.ok) throw new Error('Network response was not ok.');
-            const data = await response.json();            // ← parse JSON here
-            console.log(`GitHub Public Repos: ${data.public_repos}`);
-            // inject into DOM if needed
+          const response = await fetch(`https://api.github.com/users/${username}`);
+          if (!response.ok) throw new Error("Network response was not ok.");
+          const data = await response.json();
+          console.log(`GitHub Public Repos: ${data.public_repos}`);
+      
+          const githubReposEl = document.getElementById("github-repos");
+          if (githubReposEl) {
+            githubReposEl.textContent = `${data.public_repos} public repositories`;
+          }
         } catch (error) {
-            console.error('Failed to fetch GitHub stats:', error);
+          console.error("Failed to fetch GitHub stats:", error);
         }
-    }
-    fetchGitHubStats('adi1220');
-
-
-    // Call the function with your GitHub username
-    fetchGitHubStats('adi1220');
+      }
+      
+      // Call the function with your GitHub username
+      fetchGitHubStats("adi1220");
 
 });
