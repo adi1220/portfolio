@@ -18,17 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 role: "Software Engineer (Machine Learning)",
                 company: "Samsung Research Institute Delhi",
                 duration: "Jul 2022 – Present",
-                description: "Delivered production-grade ML/DL solutions spanning Computer Vision, Audio AI, and Agentic AI—from research and prototyping to deployment and commercialization.
-",
-                details: [
-        "Developed C++ inference pipelines using singleton/factory patterns, circular buffers, and multithreading for low-latency, memory-safe operation across 3 product lines.",
-        "Reduced inference latency to < 100 ms through advanced pruning, quantization, and architectural optimization.",
-        "Built a few-shot learning framework for rapid model customization, accelerating feature prototyping.",
-        "Enhanced model performance using Siamese networks and knowledge distillation, shrinking models by 50% while increasing the F1-score by 4%.",
-        "Designed an automation framework with Neo4j and MongoDB, reducing manual testing efforts by 50%.",
-        "Fine-tuned YOLOv8/YOLOX models for real-time detection with over 89% accuracy.",
-        "Enhanced Samsung OCR pipelines, increasing recognition accuracy to 95.2%."
-    ]
+                description: "Delivered production-grade ML/DL solutions spanning Computer Vision, Audio AI, and Agentic AI—from research and prototyping to deployment and commercialization."
             },
             {
                 role: "Software Engineer Intern",
