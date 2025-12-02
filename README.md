@@ -6,7 +6,7 @@
 
 A modern, responsive, single-page portfolio website designed to showcase my experience as a Software Engineer specializing in Machine Learning, C++, and On-device AI. 
 
-**[View Live Demo](https://adi1220.github.io/portfolio/)** _(Replace "portfolio" with your repo name if different)_
+**[View Live Demo](https://adi1220.github.io/portfolio/)** 
 
 ---
 
