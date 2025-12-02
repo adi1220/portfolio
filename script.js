@@ -107,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsGrid = document.getElementById('projects-grid');
     resumeData.projects.forEach(project => {
         let linksHTML = '';
-        for (const [key, value] of Object.entries(project.links)) {
+        const links = project.links || {};               // ← guard when links undefined
+        for (const [key, value] of Object.entries(links)) {
             linksHTML += `<a href="${value}" target="_blank" rel="noopener noreferrer">${key}</a>`;
         }
         const projectCard = `
@@ -120,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         projectsGrid.innerHTML += projectCard;
     });
+
 
     // Skills Grid
     const skillsGrid = document.getElementById('skills-grid');
@@ -147,32 +149,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. TYPEWRITER EFFECT ---
     const typewriterEl = document.querySelector('.typewriter');
-    const textArray = JSON.parse(typewriterEl.getAttribute('data-text'));
-    let textIndex = 0;
-    let charIndex = 0;
-
-    function type() {
-        if (charIndex < textArray[textIndex].length) {
-            typewriterEl.textContent += textArray[textIndex].charAt(charIndex);
-            charIndex++;
-            setTimeout(type, 100);
-        } else {
-            setTimeout(erase, 2000);
+    let textArray = [];
+    if (typewriterEl) {
+        try {
+            textArray = JSON.parse(typewriterEl.getAttribute('data-text') || '[]');
+        } catch (e) {
+            console.error('typewriter data-text JSON parse error:', e);
+            textArray = [];
         }
     }
-
-    function erase() {
-        if (charIndex > 0) {
-            typewriterEl.textContent = textArray[textIndex].substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(erase, 50);
-        } else {
-            textIndex = (textIndex + 1) % textArray.length;
-            setTimeout(type, 500);
+    
+    if (typewriterEl && textArray.length) {
+        let textIndex = 0;
+        let charIndex = 0;
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typewriterEl.textContent += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
         }
+        function erase() {
+            if (charIndex > 0) {
+                typewriterEl.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(type, 500);
+            }
+        }
+        type();
     }
 
-    type();
 
 
     // --- 5. CANVAS API - Particle Network ---
@@ -282,16 +293,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. GITHUB API INTEGRATION (BONUS) ---
     async function fetchGitHubStats(username) {
         try {
-            // This is a simple example. For more complex data, you might need a token.
             const response = await fetch(`https://api.github.com/users/${username}`);
             if (!response.ok) throw new Error('Network response was not ok.');
-            const data = await fetch( `https://api.github.com/users/${username}`);
+            const data = await response.json();            // ← parse JSON here
             console.log(`GitHub Public Repos: ${data.public_repos}`);
-            // You can now inject this data into your page, e.g., in the hero or footer.
+            // inject into DOM if needed
         } catch (error) {
             console.error('Failed to fetch GitHub stats:', error);
         }
     }
+    fetchGitHubStats('adi1220');
+
 
     // Call the function with your GitHub username
     fetchGitHubStats('adi1220');
