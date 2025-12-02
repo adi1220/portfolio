@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Kumar Singh | Software Engineer (ML)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <a href="#" class="logo">Aditya.<span class="highlight">Dev</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact" class="btn-nav">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="container hero-content">
+            <p class="greeting">Hi, I'm</p>
+            <h1>Aditya Kumar Singh </h1>
+            <h2 class="role">Software Engineer (Machine Learning) </h2>
+            <p class="tagline">Specializing in high-performance C++ inference pipelines, on-device AI, and distributed systems. </p>
+            <div class="cta-group">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    I am a Software Engineer at Samsung Research Institute Delhi with a focus on Machine Learning and Systems. 
+                    I have extensive experience leading end-to-end development of on-device features, achieving significant 
+                    optimizations in model size and CPU usage. </p>
+                <p>
+                    My expertise lies in bridging the gap between AI models and system software stacks, utilizing C++, Python, 
+                    and modern frameworks like PyTorch and TensorFlow. I am passionate about building reliable, scalable production systems. </p>
+                <div class="education-box">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <p><strong>Thapar Institute of Engineering and Technology</strong><br>
+                    Bachelor of Engineering in Electronics & Communication </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Jul 2022 - Present</div> <div class="timeline-content">
+                        <h3>Software Engineer (Machine Learning)</h3>
+                        <h4>Samsung Research Institute Delhi </h4>
+                        <ul>
+                            <li>Led end-to-end development of on-device Sound Event Detection, achieving 94.8% F1-score with reduced CPU usage. </li>
+                            <li>Developed high-performance C++ inference pipelines for real-time audio processing using multithreading and circular buffers. </li>
+                            <li>Reduced inference latency to < 100 ms via pruning and quantization. </li>
+                            <li>Integrated Neo4j and MongoDB for distributed metadata management, automating SQA efforts by 50%. </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2022 - Jun 2022</div> <div class="timeline-content">
+                        <h3>Software Engineer Intern</h3>
+                        <h4>Samsung Research Institute Delhi </h4>
+                        <ul>
+                            <li>Deployed DBNet for real-time on-device text recognition, achieving 85% accuracy under resource constraints. </li>
+                            <li>Enhanced Samsung OCR pipelines by modernizing text ROI detection. </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2021 - Jul 2021</div> <div class="timeline-content">
+                        <h3>Research Intern</h3>
+                        <h4>IIIT Allahabad </h4>
+                        <ul>
+                            <li>Developed multimodal models combining VGG16 (visual) and Bi-LSTM (textual) features for hate speech detection. </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Languages</h3>
+                    <p>C++ (Multithreading, Design Patterns), Python, SQL </p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Frameworks & ML</h3>
+                    <p>PyTorch, TensorFlow, TF Lite, ONNX, OpenCV, YOLOv8, Transformers </p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Systems & DB</h3>
+                    <p>Neo4j, MongoDB, Docker (CI/CD), Real-time Inference Pipelines </p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Model Optimization</h3>
+                    <p>Quantization, Pruning, Knowledge Distillation </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Projects & Achievements</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <h3>Facial Keypoint Detection</h3>
+                    <p class="tech-stack">C++, Python, PyTorch, CNN</p>
+                    <p>Developed a CNN to detect facial keypoints on the YouTube Face Dataset. Engineered a one-shot detector using SVM and HOG. </p>
+                    <a href="https://github.com/adi1220" target="_blank" class="link-text">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Automatic Image Captioning</h3>
+                    <p class="tech-stack">Python, CNN, RNN, PyTorch</p>
+                    <p>Implemented an image captioning model using a LeNet CNN encoder and an LSTM decoder. </p>
+                </div>
+
+                 <div class="project-card highlight-card">
+                    <h3><i class="fas fa-certificate"></i> Patent Published</h3>
+                    <p class="date">Jun 2024</p>
+                    <p>"System and Method for Generating Spatio-Temporal-Chromatically Aligned Multievent Visual Cue" </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container footer-content">
+            <h2>Let's Connect</h2>
+            <div class="social-links">
+                <a href="mailto:adi12679.as@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://linkedin.com/in/adi1220" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/adi1220" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://kaggle.com/aditya1220" target="_blank"><i class="fab fa-kaggle"></i> Kaggle</a>
+                </div>
+            <p class="copyright">&copy; 2025 Aditya Kumar Singh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
