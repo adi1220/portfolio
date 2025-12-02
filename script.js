@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resumeData = {
         personalInfo: {
             name: "Aditya Kumar Singh",
-            titles: ["Machine Learning Engineer...","Deep Learning...", "Researcher...", "C++ Developer..."],
+            titles: ["Machine Learning Engineer...","Deep Learning...", "Researcher..."],
             socials: [
                 { name: "LinkedIn", url: "https://linkedin.com/in/adi1220", icon: "fab fa-linkedin" },
                 { name: "GitHub", url: "https://github.com/adi1220", icon: "fab fa-github" },
